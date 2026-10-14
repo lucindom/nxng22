@@ -1,11 +1,14 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject } from "@angular/core";
+import { Component, inject, input } from "@angular/core";
+import { RouterLink, RouterLinkActive } from "@angular/router";
 import { AuthService } from "@nx-ng-v22/core";
+
+import { ISidebarMenuItem } from "../../models/sidebar-menu-item";
 
 @Component({
   selector: "lib-sidebar",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   template: `
     <div
       class="sidebar"
@@ -13,8 +16,19 @@ import { AuthService } from "@nx-ng-v22/core";
     >
       <h3>Menú Principal</h3>
       <ul>
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Dashboard</a></li>
+        @for (item of menu(); track item.route) {
+          <li>
+            <a
+              class="block rounded px-2 py-1"
+              [routerLink]="item.route"
+              routerLinkActive="bg-white/20 font-bold"
+              [routerLinkActiveOptions]="{ exact: true }"
+              ariaCurrentWhenActive="page"
+            >
+              {{ item.label }}
+            </a>
+          </li>
+        }
       </ul>
       <div class="session-status" style="margin-top: 50px;">
         <p>
@@ -32,6 +46,8 @@ import { AuthService } from "@nx-ng-v22/core";
   `,
 })
 export class SidebarComponent {
+  readonly menu = input<ISidebarMenuItem[]>([]);
+
   protected authService = inject(AuthService);
 
   login() {

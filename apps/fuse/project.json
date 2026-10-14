@@ -25,6 +25,7 @@
         ],
         "styles": [
           "apps/fuse/src/material-theme.scss",
+          "@angular/material/prebuilt-themes/azure-blue.css",
           "apps/fuse/src/styles.css"
         ]
       },
