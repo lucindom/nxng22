@@ -26,6 +26,9 @@
       ],
       "@nx-ng-v22/ui": [
         "./libs/ui/src/index.ts"
+      ],
+      "@nx-ng-v22/shared": [
+        "./libs/shared/src/index.ts"
       ]
     }
   },
