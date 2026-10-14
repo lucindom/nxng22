@@ -23,6 +23,9 @@
       ],
       "@nx-ng-v22/core": [
         "./libs/core/src/index.ts"
+      ],
+      "@nx-ng-v22/ui": [
+        "./libs/ui/src/index.ts"
       ]
     }
   },

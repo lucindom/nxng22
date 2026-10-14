@@ -24,6 +24,7 @@
           }
         ],
         "styles": [
+          "apps/fuse/src/material-theme.scss",
           "apps/fuse/src/styles.css"
         ]
       },

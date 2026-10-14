@@ -8,7 +8,9 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/apps/spark",
@@ -21,7 +23,10 @@
             "input": "apps/spark/public"
           }
         ],
-        "styles": ["apps/spark/src/styles.css"]
+        "styles": [
+          "apps/spark/src/material-theme.scss",
+          "apps/spark/src/styles.css"
+        ]
       },
       "configurations": {
         "production": {
