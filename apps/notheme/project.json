@@ -24,7 +24,7 @@
           }
         ],
         "styles": [
-          "apps/notheme/src/styles.scss"
+          "apps/notheme/src/styles.css"
         ]
       },
       "configurations": {

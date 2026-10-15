@@ -30,8 +30,11 @@
       "@nx-ng-v22/shared": [
         "./libs/shared/src/index.ts"
       ],
-      "@nx-ng-v22/builderkit": [
+      "@builderkit/lib": [
         "./libs/builderkit/src/index.ts"
+      ],
+      "@/*": [
+        "./libs/builderkit/src/*"
       ]
     }
   },

@@ -1,13 +1,18 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcome } from './nx-welcome';
+import { Component } from "@angular/core";
+import { RouterModule } from "@angular/router";
+import { ISidebarMenuItem, SidebarComponent } from "@nx-ng-v22/layout";
 
 @Component({
-  imports: [NxWelcome, RouterModule],
-  selector: 'app-root',
-  templateUrl: './app.html',
-  styleUrl: './app.scss',
+  imports: [SidebarComponent, RouterModule],
+  selector: "app-root",
+  templateUrl: "./app.html",
+  styleUrl: "./app.scss",
 })
 export class App {
-  protected title = 'notheme';
+  protected title = "notheme";
+
+  protected readonly menu: ISidebarMenuItem[] = [
+    { label: "Inicio", route: "/" },
+    { label: "trabajadores", route: "/trabajadores" },
+  ];
 }

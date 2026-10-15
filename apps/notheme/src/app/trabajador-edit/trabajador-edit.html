@@ -1,0 +1,51 @@
+<h2 class="mb-4 text-2xl font-medium">
+  Edición de Trabajadores
+
+  <lib-boton-menu (accionSeleccionada)="ejecutarAccion($event)" />
+</h2>
+
+<form
+  class="flex max-w-xl flex-col gap-2"
+  [formGroup]="form"
+  (ngSubmit)="save()"
+>
+  <mat-form-field>
+    <mat-label>Nombre del trabajador</mat-label>
+    <input matInput [formControl]="form.controls.name" />
+    @if (form.controls.name.hasError("required")) {
+    <mat-error>El nombre es obligatorio</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Notas</mat-label>
+    <textarea
+      matInput
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="2"
+      cdkAutosizeMaxRows="4"
+      [formControl]="form.controls.notes"
+    ></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Supervisor</mat-label>
+    <input
+      matInput
+      [formControl]="form.controls.supervisor"
+      [matAutocomplete]="supervisorAuto"
+    />
+    <mat-autocomplete #supervisorAuto="matAutocomplete">
+      @for (supervisor of filteredSupervisors(); track supervisor) {
+      <mat-option [value]="supervisor">{{ supervisor }}</mat-option>
+      }
+    </mat-autocomplete>
+    @if (form.controls.supervisor.hasError("required")) {
+    <mat-error>El supervisor es obligatorio</mat-error>
+    }
+  </mat-form-field>
+
+  <div>
+    <button mat-flat-button color="primary" type="submit">Guardar</button>
+  </div>
+</form>

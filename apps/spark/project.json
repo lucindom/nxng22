@@ -5,7 +5,6 @@
   "prefix": "app",
   "sourceRoot": "apps/spark/src",
   "tags": [],
-  "implicitDependencies": ["builderkit"],
   "targets": {
     "build": {
       "executor": "@angular/build:application",
@@ -22,10 +21,13 @@
           {
             "glob": "**/*",
             "input": "apps/spark/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "libs/builderkit/assets"
           }
         ],
         "styles": [
-          "libs/builderkit/src/styles/material/theme.scss",
           "apps/spark/src/styles.css"
         ]
       },
@@ -34,13 +36,11 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "500kb"
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "4kb",
-              "maximumError": "8kb"
+              "maximumWarning": "4kb"
             }
           ],
           "outputHashing": "all"
@@ -87,5 +87,8 @@
         "spa": true
       }
     }
-  }
+  },
+  "implicitDependencies": [
+    "builderkit"
+  ]
 }

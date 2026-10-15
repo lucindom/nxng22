@@ -5,14 +5,14 @@ Objetivo: fuse aplica el tema `default` (EMS) y spark el tema `rg`, emulando lo 
 Cada app carga solo su tema: sin temas ajenos, sin modo dark que no se usa y sin CSS que después se pisa.
 
 Cadena de verdad:
-`libs/builderkit/src/styles/config/themes.config.mjs` → `tools/scripts/generate-themes.mjs` →
-`libs/builderkit/src/styles/generated/*.css` (`@theme`) → utilidades de Tailwind + `--mat-sys-*` de Material.
+`libs/builderkit/src/styles-ems/config/themes.config.mjs` → `tools/scripts/generate-themes.mjs` →
+`libs/builderkit/src/styles-ems/generated/*.css` (`@theme`) → utilidades de Tailwind + `--mat-sys-*` de Material.
 
 Plan completo (arquitectura, tabla de mapeo de Material, riesgos):
 `C:\Users\lucin\.claude\plans\investiga-como-el-proyecto-calm-castle.md`
 
 ## Archivos afectados
-- `libs/builderkit/src/styles/**` (nuevo: config, generated, tailwind, material, README)
+- `libs/builderkit/src/styles-ems/**` (nuevo: config, generated, tailwind, material, README)
 - `tools/scripts/generate-themes.mjs` (nuevo), `package.json` (scripts `themes`, `themes:check`)
 - `apps/{fuse,spark}`: `project.json`, `src/styles.css`, `src/index.html`, `src/app/app.html`; se borra `src/material-theme.scss`
 - `libs/layout/src/lib/components/sidebar/sidebar.ts`
@@ -20,10 +20,10 @@ Plan completo (arquitectura, tabla de mapeo de Material, riesgos):
 
 ## Pasos
 - [x] 0. Plan en el repo
-- [x] 1. Config y paletas ESM en `libs/builderkit/src/styles/config/` + borrar paletas JS obsoletas
+- [x] 1. Config y paletas ESM en `libs/builderkit/src/styles-ems/config/` + borrar paletas JS obsoletas
 - [x] 2. Generador `tools/scripts/generate-themes.mjs` + scripts npm + CSS generados
 - [x] 2b. Estilos movidos de `libs/ui/src/styles` a `libs/builderkit/src/styles` (lib `builderkit`); rutas del generador actualizadas
-- [x] 3. `libs/builderkit/src/styles/tailwind/design-system.css`
+- [x] 3. `libs/builderkit/src/styles-ems/tailwind/design-system.css`
 - [x] 4. Material: `material/_system-tokens.scss` + `material/theme.scss`
 - [x] 5. Conectar apps (project.json, styles.css, index.html Lato, borrar material-theme.scss) + README
 - [x] 6. Extras: sidebar tematizado, spark app.html → Tailwind, fuse app.html `flex-grow` → `grow`
@@ -68,3 +68,16 @@ Plan completo (arquitectura, tabla de mapeo de Material, riesgos):
 - `themes:check` y `tailwind:sources:check` OK; `nx build fuse spark` OK.
 - dist: primary-500 = #26334a (fuse) / #fe7801 (spark); una sola `--mat-sys-primary` = `var(--color-primary-500)`; sin azure, `.theme-`, `.dark` ni `light-dark(`; utilidades con `!important`; clases de `ui`/`layout` presentes.
 - Pendiente solo manual: ver `/material1` en el navegador (nx serve fuse/spark). Lint no corrido (solo a pedido).
+
+## Reversión en apps (2026-10-15)
+Por petición del usuario se retiró el theming de `apps/fuse` y `apps/spark` y se volvió al estado original:
+`material-theme.scss` (azure / rose) + prebuilt `azure-blue` en fuse, `styles.css` sin imports de tema,
+sin `implicitDependencies`, `index.html` con Roboto. Se conservan: `libs/builderkit/src/styles-ems/**` y el generador
+(sin consumidores), sidebar tematizado (`bg-primary` ya no tendrá color definido en esas apps), `app.html` con
+clases Tailwind, `@source` regenerado y los puertos (fuse 4200, spark 4201, notheme 4202).
+
+## Desacople de styles-ems (2026-10-15)
+Por petición del usuario se quitaron las referencias a `libs/builderkit/src/styles-ems`: se eliminó
+`tools/scripts/generate-themes.mjs` y los scripts npm `themes` / `themes:check`. La carpeta queda sin
+tocar y sin consumidores. Las rutas y el generador citados más arriba son históricos y ya no existen
+(el generador se puede recuperar del commit 88445ed).
