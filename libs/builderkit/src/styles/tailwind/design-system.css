@@ -1,0 +1,142 @@
+/*
+ * Design system de Tailwind v4 (css-first). Lo importa cada app desde su src/styles.css, junto con
+ * el tema de marca (`generated/theme-<nombre>.css`), que es lo único que cambia de una app a otra.
+ *
+ * Lo que es color vive en `config/themes.config.mjs` y llega por `generated/`. 
+ */
+
+/* Paletas Material (gray, green, red, yellow, orange) y variables `--app-*` (esquema light). */
+@import "../generated/colors.css";
+
+@theme {
+  /* ems22 `extend.fontFamily` (`--font-sans` está en el bloque `static` de más abajo). */
+  --font-mono:
+    "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
+  /* ems22 `fontSize`. Reemplaza la escala por defecto y, como en v3, sin line-height. */
+  --text-*: initial;
+  --text-xs: 0.625rem;
+  --text-sm: 0.75rem;
+  --text-md: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1rem;
+  --text-xl: 1.125rem;
+  --text-2xl: 1.25rem;
+  --text-3xl: 1.5rem;
+  --text-4xl: 2rem;
+  --text-5xl: 2.25rem;
+  --text-6xl: 2.5rem;
+  --text-7xl: 3rem;
+  --text-8xl: 4rem;
+  --text-9xl: 6rem;
+  --text-10xl: 8rem;
+
+  /* ems22 `screens` (los `lt-*` están más abajo como variantes). */
+  --breakpoint-*: initial;
+  --breakpoint-sm: 600px;
+  --breakpoint-md: 960px;
+  --breakpoint-lg: 1280px;
+  --breakpoint-xl: 1440px;
+
+  /* ems22 `transitionTimingFunction.drawer`. */
+  --ease-drawer: cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  /* ems22 `animation.spin-slow`. */
+  /* `@keyframes spin` ya lo emite Tailwind desde su tema por defecto. */
+  --animate-spin-slow: spin 3s linear infinite;
+}
+
+/* Material lee `--font-sans` desde otra hoja de estilos: Tailwind no puede saber que se usa. */
+@theme static {
+  --font-sans:
+    "Lato", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* ems22 `screens.lt-*`: `max` de cada breakpoint. */
+@custom-variant lt-sm (@media (max-width: 599px));
+@custom-variant lt-md (@media (max-width: 959px));
+@custom-variant lt-lg (@media (max-width: 1279px));
+
+/* Las apps no usan modo dark; la variante queda lista y no genera CSS si no se usa. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Fuse `icon-size-<n>`: tamaño de mat-icon, svg y fuentes de iconos. */
+@utility icon-size-* {
+  width: calc(var(--spacing) * --value(integer));
+  height: calc(var(--spacing) * --value(integer));
+  min-width: calc(var(--spacing) * --value(integer));
+  min-height: calc(var(--spacing) * --value(integer));
+  font-size: calc(var(--spacing) * --value(integer));
+  line-height: calc(var(--spacing) * --value(integer));
+
+  svg {
+    width: calc(var(--spacing) * --value(integer));
+    height: calc(var(--spacing) * --value(integer));
+  }
+}
+
+/* Fuse: fondos y textos del esquema light (`--app-*`, ver `config/themes.config.mjs`). */
+@utility bg-app-bar {
+  background-color: var(--app-bg-app-bar);
+}
+
+@utility bg-card {
+  background-color: var(--app-bg-card);
+}
+
+@utility bg-default {
+  background-color: var(--app-bg-default);
+}
+
+@utility bg-dialog {
+  background-color: var(--app-bg-dialog);
+}
+
+@utility bg-hover {
+  background-color: var(--app-bg-hover);
+}
+
+@utility text-default {
+  color: var(--app-text-default);
+}
+
+@utility text-secondary {
+  color: var(--app-text-secondary);
+}
+
+@utility text-hint {
+  color: var(--app-text-hint);
+}
+
+@utility text-disabled {
+  color: var(--app-text-disabled);
+}
+
+@utility divider {
+  border-color: var(--app-divider);
+}
+
+@layer base {
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    /* El esquema dark no se genera: ver `config/themes.config.mjs`. */
+    color-scheme: light;
+    margin: 0;
+    background-color: var(--mat-sys-background);
+    color: var(--mat-sys-on-surface);
+    font: var(--mat-sys-body-medium);
+  }
+
+  /* ems22 usa `--app-border` (rgba(0 0 0 / .12)) como color de borde por defecto. */
+  *,
+  ::before,
+  ::after {
+    border-color: var(--app-border);
+  }
+}

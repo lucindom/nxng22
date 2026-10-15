@@ -1,11 +1,19 @@
-<h2 class="mb-4 text-2xl font-medium">Edición de Productos</h2>
+<h2 class="mb-4 text-2xl font-medium">
+  Edición de Productos
 
-<form class="flex max-w-xl flex-col gap-2" [formGroup]="form" (ngSubmit)="save()">
+  <lib-boton-menu (accionSeleccionada)="ejecutarAccion($event)" />
+</h2>
+
+<form
+  class="flex max-w-xl flex-col gap-2"
+  [formGroup]="form"
+  (ngSubmit)="save()"
+>
   <mat-form-field>
     <mat-label>Nombre del producto</mat-label>
     <input matInput [formControl]="form.controls.name" />
     @if (form.controls.name.hasError("required")) {
-      <mat-error>El nombre es obligatorio</mat-error>
+    <mat-error>El nombre es obligatorio</mat-error>
     }
   </mat-form-field>
 
@@ -29,11 +37,11 @@
     />
     <mat-autocomplete #departmentAuto="matAutocomplete">
       @for (department of filteredDepartments(); track department) {
-        <mat-option [value]="department">{{ department }}</mat-option>
+      <mat-option [value]="department">{{ department }}</mat-option>
       }
     </mat-autocomplete>
     @if (form.controls.department.hasError("required")) {
-      <mat-error>El departamento es obligatorio</mat-error>
+    <mat-error>El departamento es obligatorio</mat-error>
     }
   </mat-form-field>
 

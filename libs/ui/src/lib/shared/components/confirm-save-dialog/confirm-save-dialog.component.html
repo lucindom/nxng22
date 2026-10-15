@@ -1,0 +1,18 @@
+<mat-toolbar>
+  <span class="grow">{{ view().title }}</span>
+  <button mat-icon-button type="button" aria-label="Cerrar" (click)="cancel()">
+    <mat-icon fontSet="material-symbols-outlined">close</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-dialog-content>
+  <p class="pt-4">
+    Se va a guardar {{ view().entity }} <strong>{{ view().name }}</strong
+    >.
+  </p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="cancel()">{{ view().cancelLabel }}</button>
+  <button mat-flat-button type="button" (click)="confirm()">{{ view().confirmLabel }}</button>
+</mat-dialog-actions>

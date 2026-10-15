@@ -5,6 +5,7 @@
   "prefix": "app",
   "sourceRoot": "apps/fuse/src",
   "tags": [],
+  "implicitDependencies": ["builderkit"],
   "targets": {
     "build": {
       "executor": "@angular/build:application",
@@ -24,8 +25,7 @@
           }
         ],
         "styles": [
-          "apps/fuse/src/material-theme.scss",
-          "@angular/material/prebuilt-themes/azure-blue.css",
+          "libs/builderkit/src/styles/material/theme.scss",
           "apps/fuse/src/styles.css"
         ]
       },

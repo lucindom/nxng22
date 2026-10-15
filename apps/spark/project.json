@@ -5,6 +5,7 @@
   "prefix": "app",
   "sourceRoot": "apps/spark/src",
   "tags": [],
+  "implicitDependencies": ["builderkit"],
   "targets": {
     "build": {
       "executor": "@angular/build:application",
@@ -24,7 +25,7 @@
           }
         ],
         "styles": [
-          "apps/spark/src/material-theme.scss",
+          "libs/builderkit/src/styles/material/theme.scss",
           "apps/spark/src/styles.css"
         ]
       },
@@ -55,6 +56,9 @@
       "continuous": true,
       "executor": "@angular/build:dev-server",
       "defaultConfiguration": "development",
+      "options": {
+        "port": 4201
+      },
       "configurations": {
         "production": {
           "buildTarget": "spark:build:production"

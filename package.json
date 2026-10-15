@@ -5,7 +5,9 @@
   "private": true,
   "scripts": {
     "tailwind:sources": "node tools/scripts/sync-tailwind-sources.mjs",
-    "tailwind:sources:check": "node tools/scripts/sync-tailwind-sources.mjs --check"
+    "tailwind:sources:check": "node tools/scripts/sync-tailwind-sources.mjs --check",
+    "themes": "node tools/scripts/generate-themes.mjs",
+    "themes:check": "node tools/scripts/generate-themes.mjs --check"
   },
   "devDependencies": {
     "@angular-devkit/core": "~22.1.0",

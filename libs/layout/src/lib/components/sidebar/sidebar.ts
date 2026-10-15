@@ -10,10 +10,7 @@ import { ISidebarMenuItem } from "../../models/sidebar-menu-item";
   standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive],
   template: `
-    <div
-      class="sidebar"
-      style="width: 250px; background: #222; color: #fff; height: 100vh; padding: 20px;"
-    >
+    <div class="sidebar h-screen w-[250px] bg-primary p-5 text-on-primary">
       <h3>Menú Principal</h3>
       <ul>
         @for (item of menu(); track item.route) {
@@ -30,7 +27,7 @@ import { ISidebarMenuItem } from "../../models/sidebar-menu-item";
           </li>
         }
       </ul>
-      <div class="session-status" style="margin-top: 50px;">
+      <div class="session-status mt-12">
         <p>
           Estado:
           {{ authService.isAuthenticated() ? "Sesión Activa" : "Invitado" }}

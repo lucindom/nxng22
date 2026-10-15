@@ -29,6 +29,9 @@
       ],
       "@nx-ng-v22/shared": [
         "./libs/shared/src/index.ts"
+      ],
+      "@nx-ng-v22/builderkit": [
+        "./libs/builderkit/src/index.ts"
       ]
     }
   },

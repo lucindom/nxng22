@@ -1,5 +1,10 @@
 import { TextFieldModule } from "@angular/cdk/text-field";
-import { Component, computed, inject } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+} from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
   FormControl,
@@ -12,12 +17,14 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { filter } from "rxjs";
-
+import { Router } from "@angular/router";
 import {
+  BotonMenuAccion,
+  BotonMenuComponent,
   ConfirmSaveDialogComponent,
   IConfirmSaveDialogData,
-} from "./confirm-save-dialog";
+} from "@nx-ng-v22/ui";
+import { filter } from "rxjs";
 
 interface IMaterial1Form {
   name: FormControl<string>;
@@ -49,8 +56,10 @@ const MANAGERS: readonly string[] = [
     MatFormFieldModule,
     MatInputModule,
     TextFieldModule,
+    BotonMenuComponent,
   ],
   templateUrl: "./material1.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Material1Component {
   readonly form = new FormGroup<IMaterial1Form>({
@@ -77,6 +86,15 @@ export class Material1Component {
 
   private dialog = inject(MatDialog);
 
+  private router = inject(Router);
+
+  private readonly accionesMenu: Record<BotonMenuAccion, () => void> =
+    {
+      guardar: () => this.save(),
+      borrar: () => this.form.reset(),
+      cancelar: () => this.router.navigateByUrl("/"),
+    };
+
   save(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -85,17 +103,20 @@ export class Material1Component {
     }
 
     this.dialog
-      .open<
+      .open<ConfirmSaveDialogComponent, IConfirmSaveDialogData, boolean>(
         ConfirmSaveDialogComponent,
-        IConfirmSaveDialogData,
-        boolean
-      >(ConfirmSaveDialogComponent, {
-        ariaLabel: "Confirmar guardado",
-        data: { name: this.form.controls.name.value },
-        width: "420px",
-      })
+        {
+          ariaLabel: "Confirmar guardado",
+          data: { name: this.form.controls.name.value, entity: "la aplicación" },
+          width: "420px",
+        },
+      )
       .afterClosed()
       .pipe(filter((confirmed) => confirmed === true))
       .subscribe(() => this.form.reset());
+  }
+
+  protected ejecutarAccion(accion: BotonMenuAccion): void {
+    this.accionesMenu[accion]();
   }
 }

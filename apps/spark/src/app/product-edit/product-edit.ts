@@ -12,12 +12,14 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { filter } from "rxjs";
-
+import { Router } from "@angular/router";
 import {
+  BotonMenuAccion,
+  BotonMenuComponent,
   ConfirmSaveDialogComponent,
   IConfirmSaveDialogData,
-} from "./confirm-save-dialog";
+} from "@nx-ng-v22/ui";
+import { filter } from "rxjs";
 
 interface IProductEditForm {
   name: FormControl<string>;
@@ -49,6 +51,8 @@ const DEPARTMENTS: readonly string[] = [
     MatFormFieldModule,
     MatInputModule,
     TextFieldModule,
+
+    BotonMenuComponent,
   ],
   templateUrl: "./product-edit.html",
 })
@@ -79,6 +83,13 @@ export class ProductEditComponent {
   );
 
   private dialog = inject(MatDialog);
+  private router = inject(Router);
+
+  private readonly accionesMenu: Record<BotonMenuAccion, () => void> = {
+    guardar: () => this.save(),
+    borrar: () => this.form.reset(),
+    cancelar: () => this.router.navigateByUrl("/"),
+  };
 
   save(): void {
     if (this.form.invalid) {
@@ -88,17 +99,20 @@ export class ProductEditComponent {
     }
 
     this.dialog
-      .open<
+      .open<ConfirmSaveDialogComponent, IConfirmSaveDialogData, boolean>(
         ConfirmSaveDialogComponent,
-        IConfirmSaveDialogData,
-        boolean
-      >(ConfirmSaveDialogComponent, {
-        ariaLabel: "Confirmar guardado",
-        data: { name: this.form.controls.name.value },
-        width: "420px",
-      })
+        {
+          ariaLabel: "Confirmar guardado",
+          data: { name: this.form.controls.name.value, entity: "el producto" },
+          width: "420px",
+        },
+      )
       .afterClosed()
       .pipe(filter((confirmed) => confirmed === true))
       .subscribe(() => this.form.reset());
+  }
+
+  protected ejecutarAccion(accion: BotonMenuAccion): void {
+    this.accionesMenu[accion]();
   }
 }

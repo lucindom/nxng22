@@ -1,9 +1,19 @@
-<form class="flex max-w-xl flex-col gap-2" [formGroup]="form" (ngSubmit)="save()">
+<h2 class="mb-4 text-2xl font-medium">
+  Edición de Materiales
+
+  <lib-boton-menu (accionSeleccionada)="ejecutarAccion($event)" />
+</h2>
+
+<form
+  class="flex max-w-xl flex-col gap-2"
+  [formGroup]="form"
+  (ngSubmit)="save()"
+>
   <mat-form-field>
     <mat-label>Nombre de la aplicación</mat-label>
     <input matInput [formControl]="form.controls.name" />
     @if (form.controls.name.hasError("required")) {
-      <mat-error>El nombre es obligatorio</mat-error>
+    <mat-error>El nombre es obligatorio</mat-error>
     }
   </mat-form-field>
 
@@ -27,11 +37,11 @@
     />
     <mat-autocomplete #managerAuto="matAutocomplete">
       @for (manager of filteredManagers(); track manager) {
-        <mat-option [value]="manager">{{ manager }}</mat-option>
+      <mat-option [value]="manager">{{ manager }}</mat-option>
       }
     </mat-autocomplete>
     @if (form.controls.manager.hasError("required")) {
-      <mat-error>El encargado es obligatorio</mat-error>
+    <mat-error>El encargado es obligatorio</mat-error>
     }
   </mat-form-field>
 

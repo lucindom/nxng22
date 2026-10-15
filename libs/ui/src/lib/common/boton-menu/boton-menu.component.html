@@ -1,0 +1,13 @@
+<button mat-flat-button type="button" [matMenuTriggerFor]="menu">
+  {{ etiqueta() }}
+  <mat-icon iconPositionEnd fontSet="material-symbols-outlined">arrow_drop_down</mat-icon>
+</button>
+
+<mat-menu #menu="matMenu">
+  @for (opcion of opciones; track opcion.accion) {
+    <button mat-menu-item type="button" (click)="seleccionar(opcion.accion)">
+      <mat-icon fontSet="material-symbols-outlined">{{ opcion.icono }}</mat-icon>
+      <span>{{ opcion.etiqueta }}</span>
+    </button>
+  }
+</mat-menu>
