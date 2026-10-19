@@ -12,12 +12,15 @@ import {
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
 import { MAT_TABS_CONFIG } from "@angular/material/tabs";
 import { provideRouter } from "@angular/router";
+import { provideAdminLayout } from "@nx-ng-v22/layout";
 import { appRoutes } from "./app.routes";
+import { sparkLayoutConfig } from "./layout/spark-layout.config";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(appRoutes),
+    provideAdminLayout(sparkLayoutConfig),
     provideHttpClient(),
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
@@ -33,9 +36,9 @@ export const appConfig: ApplicationConfig = {
     provideLocalStorage(),
     provideMedia(),
     provideTheming({
-      scheme: "dark",
-      primary: "#3E63DD",
-      error: "#E5484D",
+      scheme: "light",
+      primary: "#1bb1dc",
+      error: "#f5365c",
       neutral: "#8B8D98",
     }),
     provideWindow(),

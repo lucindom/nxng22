@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { ISidebarMenuItem, SidebarComponent } from "@nx-ng-v22/layout";
+import { SidebarComponent } from "@nx-ng-v22/layout";
 
 @Component({
   imports: [SidebarComponent, RouterModule],
@@ -10,9 +10,4 @@ import { ISidebarMenuItem, SidebarComponent } from "@nx-ng-v22/layout";
 })
 export class App {
   protected title = "notheme";
-
-  protected readonly menu: ISidebarMenuItem[] = [
-    { label: "Inicio", route: "/" },
-    { label: "trabajadores", route: "/trabajadores" },
-  ];
 }

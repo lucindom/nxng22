@@ -1,12 +1,38 @@
 <button mat-flat-button type="button" [matMenuTriggerFor]="menu">
   {{ etiqueta() }}
-  <mat-icon iconPositionEnd fontSet="material-symbols-outlined">arrow_drop_down</mat-icon>
+  <mat-icon iconPositionEnd fontSet="material-symbols-outlined"
+    >arrow_drop_down</mat-icon
+  >
 </button>
+<div class="flex gap-2 flex-col">
+  <div class="h-10 min-h-10 w-100 min-w-100 text-accent bg-primary-5">
+    Ejemplo de DIV
+  </div>
 
+  <div
+    class="h-10 min-h-10 w-100 min-w-100 text-accent bg-green-500 border-2 border-accent-500"
+  >
+    Ejemplo de DIV
+  </div>
+
+  <div class="h-10 min-h-10 w-100 min-w-100 text-accent bg-primary-1">
+    Ejemplo de DIV
+  </div>
+
+  <div class="h-10 min-h-10 w-100 min-w-100 text-accent bg-primary-1">
+    Ejemplo de DIV
+  </div>
+
+  <div class="h-10 min-h-10 w-100 min-w-100 text-accent bg-primary-1">
+    Ejemplo de DIV
+  </div>
+</div>
 <mat-menu #menu="matMenu">
   @for (opcion of opciones; track opcion.accion) {
     <button mat-menu-item type="button" (click)="seleccionar(opcion.accion)">
-      <mat-icon fontSet="material-symbols-outlined">{{ opcion.icono }}</mat-icon>
+      <mat-icon fontSet="material-symbols-outlined">{{
+        opcion.icono
+      }}</mat-icon>
       <span>{{ opcion.etiqueta }}</span>
     </button>
   }

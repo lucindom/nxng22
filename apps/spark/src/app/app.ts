@@ -1,9 +1,8 @@
 import { Component } from "@angular/core";
-import { RouterModule } from "@angular/router";
-import { ISidebarMenuItem, SidebarComponent } from "@nx-ng-v22/layout";
+import { RouterOutlet } from "@angular/router";
 
 @Component({
-  imports: [RouterModule, SidebarComponent],
+  imports: [RouterOutlet],
   selector: "app-root",
   host: {
     class: "flex min-h-full w-full flex-auto flex-col",
@@ -13,9 +12,4 @@ import { ISidebarMenuItem, SidebarComponent } from "@nx-ng-v22/layout";
 })
 export class App {
   protected title = "spark";
-
-  protected readonly menu: ISidebarMenuItem[] = [
-    { label: "Inicio", route: "/" },
-    { label: "Edición de Productos", route: "/material1" },
-  ];
 }

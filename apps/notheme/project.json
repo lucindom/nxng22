@@ -8,6 +8,7 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
+      "dependsOn": [],
       "outputs": [
         "{options.outputPath}"
       ],

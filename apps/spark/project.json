@@ -8,6 +8,7 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
+      "dependsOn": [],
       "outputs": [
         "{options.outputPath}"
       ],
@@ -24,7 +25,8 @@
           },
           {
             "glob": "**/*",
-            "input": "libs/builderkit/assets"
+            "input": "libs/builderkit/assets",
+            "output": "assets"
           }
         ],
         "styles": [

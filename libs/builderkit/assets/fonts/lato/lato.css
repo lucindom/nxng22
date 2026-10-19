@@ -1,0 +1,60 @@
+/* -------------------------------------------------------------------------- */
+/* Lato 2.015 (unmodified official web files, see OFL.txt), served locally    */
+/* Standard weights: 300 Light, 400 Regular, 500 Medium, 600 SemiBold,        */
+/* 700 Bold. Usage: <link href="assets/fonts/lato/lato.css" rel="stylesheet"> */
+/* -------------------------------------------------------------------------- */
+@font-face {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('Lato-Light.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('Lato-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Lato;
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('Lato-Italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('Lato-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('Lato-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('Lato-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Lato;
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('Lato-BoldItalic.woff2') format('woff2');
+}

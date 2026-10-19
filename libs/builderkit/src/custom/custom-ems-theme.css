@@ -1,0 +1,8 @@
+/* -------------------------------------------------------------------------- */
+/* EMS primary, accent and warn colors (fuse, `default` theme)                */
+/* Import AFTER custom-theme.css: it overrides the mat-primary / mat-accent / */
+/* mat-warn role tokens defined there.                                        */
+/* -------------------------------------------------------------------------- */
+@theme {
+ --color-test-*: #0000FF;
+}

@@ -1,9 +1,127 @@
 import { Route } from "@angular/router";
+import { AdminLayout } from "@nx-ng-v22/layout";
 
 export const appRoutes: Route[] = [
   {
-    path: "material1",
-    loadComponent: () =>
-      import("./material1/material1").then((m) => m.Material1Component),
+    path: "",
+    component: AdminLayout,
+    children: [
+      { path: "", pathMatch: "full", redirectTo: "dashboards" },
+
+      // Dashboards
+      {
+        path: "dashboards",
+        loadChildren: () => import("./modules/dashboards/routes"),
+      },
+
+      // Projects
+      {
+        path: "projects",
+        loadChildren: () => import("./modules/projects/routes"),
+      },
+
+      // Calendar
+      {
+        path: "calendar",
+        loadChildren: () => import("./modules/calendar/routes"),
+      },
+
+      // Tasks
+      {
+        path: "tasks",
+        loadChildren: () => import("./modules/tasks/routes"),
+      },
+
+      // Files
+      {
+        path: "files",
+        loadChildren: () => import("./modules/files/routes"),
+      },
+
+      // Notes
+      {
+        path: "notes",
+        loadChildren: () => import("./modules/notes/routes"),
+      },
+
+      // Teams
+      {
+        path: "teams",
+        loadChildren: () => import("./modules/teams/routes"),
+      },
+
+      // Members
+      {
+        path: "members",
+        loadChildren: () => import("./modules/members/routes"),
+      },
+
+      // Orders
+      {
+        path: "orders",
+        loadChildren: () => import("./modules/orders/routes"),
+      },
+
+      // Customers
+      {
+        path: "customers",
+        loadChildren: () => import("./modules/customers/routes"),
+      },
+
+      // Invoices
+      {
+        path: "invoices",
+        loadChildren: () => import("./modules/invoices/routes"),
+      },
+
+      // Inbox
+      {
+        path: "inbox",
+        loadChildren: () => import("./modules/inbox/routes"),
+      },
+
+      // Audit logs
+      {
+        path: "audit-logs",
+        loadChildren: () => import("./modules/audit-logs/routes"),
+      },
+
+      // Notifications
+      {
+        path: "notifications",
+        loadChildren: () => import("./modules/notifications/routes"),
+      },
+
+      // Settings
+      {
+        path: "settings",
+        loadChildren: () => import("./modules/settings/routes"),
+      },
+
+      // Integrations
+      {
+        path: "integrations",
+        loadChildren: () => import("./modules/integrations/routes"),
+      },
+
+      // Imports
+      {
+        path: "imports",
+        loadChildren: () => import("./modules/imports/routes"),
+      },
+
+      // Demo
+      {
+        path: "material1",
+        loadComponent: () =>
+          import("./material1/material1").then((m) => m.Material1Component),
+      },
+    ],
+  },
+
+  // Not found
+  {
+    path: "",
+    loadChildren: () => import("./modules/not-found/routes"),
   },
 ];

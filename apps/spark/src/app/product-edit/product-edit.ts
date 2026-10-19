@@ -10,6 +10,7 @@ import {
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
+import { MatDividerModule } from "@angular/material/divider";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { Router } from "@angular/router";
@@ -50,6 +51,7 @@ const DEPARTMENTS: readonly string[] = [
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDividerModule,
     TextFieldModule,
 
     BotonMenuComponent,
